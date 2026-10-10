@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ProfileUpdateForm from "@/components/profile-update-form";
 import SignOutButton from "@/components/sign-out-button";
+import { initialsOf } from "@/lib/format";
 import { requireSession } from "@/lib/session";
 
 export const metadata: Metadata = {
@@ -11,11 +12,7 @@ export const instant = false;
 
 export default async function ProfilePage() {
   const session = await requireSession();
-  const initials = session.user.name
-    .split(" ")
-    .slice(0, 2)
-    .map((word) => word.charAt(0))
-    .join("");
+  const initials = initialsOf(session.user.name);
 
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12">
