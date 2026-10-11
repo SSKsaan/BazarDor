@@ -1,0 +1,12 @@
+import EmptyState from "@/components/empty-state";
+
+export default function NotFound() {
+  return (
+    <EmptyState
+      icon="🧺"
+      title="পাতাটি খুঁজে পাওয়া যায়নি"
+      message="আপনি যে পণ্য বা পাতাটি খুঁজছেন সেটি সরানো হয়েছে বা কখনো ছিল না।"
+      buttonLabel="হোম পেজে যান"
+    />
+  );
+}

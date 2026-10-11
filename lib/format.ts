@@ -20,6 +20,10 @@ export function formatPrice(value: number): string {
   return `${priceFormat.format(value)} টাকা`;
 }
 
+export function formatPriceNumber(value: number): string {
+  return priceFormat.format(value);
+}
+
 export function formatChange(change: Product["change"]): string {
   const sign = change.dir === "up" ? "▲ " : change.dir === "down" ? "▼ " : "—";
   return `${sign}${percentFormat.format(Math.abs(change.pct))}%`;
