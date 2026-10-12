@@ -32,7 +32,9 @@ export default async function CategoryPage({
           </p>
         </div>
       </section>
-      <ProductList products={products} />
+      <div className="mt-6">
+        <ProductList products={products} />
+      </div>
     </main>
   );
 }

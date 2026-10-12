@@ -31,7 +31,7 @@ export default function ProductList({ products }: ProductListProps) {
 
   return (
     <div>
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p>মোট {formatPriceNumber(products.length)}টি পণ্য দেখানো হচ্ছে</p>
         <div className="flex items-center gap-2">
           <label htmlFor="sort" className="text-base-content/60">
