@@ -15,6 +15,7 @@ export default function SignInForm({ redirected }: { redirected: boolean }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pending, setPending] = useState(false);
+  const [socialBusy, setSocialBusy] = useState(false);
 
   useEffect(() => {
     if (redirected) {
@@ -70,13 +71,15 @@ export default function SignInForm({ redirected }: { redirected: boolean }) {
         <button
           type="submit"
           className="btn btn-primary mt-2 w-full text-base font-bold"
-          disabled={pending}
+          disabled={pending || socialBusy}
         >
-          {pending && <span className="loading loading-spinner"></span>}
+          {(pending || socialBusy) && (
+            <span className="loading loading-spinner"></span>
+          )}
           সাইন ইন
         </button>
       </form>
-      <SocialButtons />
+      <SocialButtons onBusy={setSocialBusy} />
       <p className="mt-6 text-center text-base-content/60">
         অ্যাকাউন্ট নেই?{" "}
         <Link href="/signup" className="text-primary underline">

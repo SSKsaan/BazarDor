@@ -11,7 +11,7 @@ const emptySubscribe = () => () => {};
 
 export default function Navbar() {
   const router = useRouter();
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
   const today = useSyncExternalStore(
     emptySubscribe,
     () => formatToday(),
@@ -54,13 +54,25 @@ export default function Navbar() {
           </span>
           <span>
             <span className="block text-xl font-bold leading-tight sm:text-2xl">বাজার দর</span>
-            <span className="block whitespace-nowrap text-xs leading-tight text-base-content/60 sm:text-sm">
-              {today}
-            </span>
+            {today ? (
+              <span className="block whitespace-nowrap text-xs leading-tight text-base-content/60 sm:text-sm">
+                {today}
+              </span>
+            ) : (
+              <span
+                className="skeleton block h-4 w-22 sm:w-44"
+                aria-hidden="true"
+              />
+            )}
           </span>
         </Link>
 
-        {session ? (
+        {isPending ? (
+          <div className="flex items-center gap-2">
+            <div className="skeleton h-12 w-24 rounded-lg" />
+            <div className="skeleton h-12 w-24 rounded-lg" />
+          </div>
+        ) : session ? (
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}

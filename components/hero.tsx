@@ -1,6 +1,5 @@
-import Image from "next/image";
 import HeroDate from "./hero-date";
-import heroImage from "../public/hero.png";
+import HeroImage from "./hero-image";
 
 export default function Hero() {
   return (
@@ -20,13 +19,7 @@ export default function Hero() {
         </a>
       </div>
       <div className="flex w-full flex-1 items-center justify-center">
-        <Image
-          src={heroImage}
-          alt="সবজির ঝুড়ি"
-          priority
-          quality={100}
-          className="h-auto w-full max-w-md"
-        />
+        <HeroImage />
       </div>
     </section>
   );

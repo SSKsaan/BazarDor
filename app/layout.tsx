@@ -14,6 +14,7 @@ const hindSiliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
   subsets: ["bengali", "latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "block",
 });
 
 export const metadata: Metadata = {

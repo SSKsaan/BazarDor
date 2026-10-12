@@ -17,6 +17,7 @@ export default function SignUpForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [pending, setPending] = useState(false);
+  const [socialBusy, setSocialBusy] = useState(false);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -89,13 +90,15 @@ export default function SignUpForm() {
         <button
           type="submit"
           className="btn btn-primary mt-2 w-full text-base font-bold"
-          disabled={pending}
+          disabled={pending || socialBusy}
         >
-          {pending && <span className="loading loading-spinner"></span>}
+          {(pending || socialBusy) && (
+            <span className="loading loading-spinner"></span>
+          )}
           অ্যাকাউন্ট তৈরি করুন
         </button>
       </form>
-      <SocialButtons />
+      <SocialButtons onBusy={setSocialBusy} />
       <p className="mt-6 text-center text-base-content/60">
         অ্যাকাউন্ট আছে?{" "}
         <Link href="/signin" className="text-primary underline">
