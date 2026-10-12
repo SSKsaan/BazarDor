@@ -66,7 +66,9 @@ export default function ProductList({ products }: ProductListProps) {
           </div>
         </div>
       </div>
-      <ProductGrid products={shown} />
+      <div className="mt-6">
+        <ProductGrid products={shown} />
+      </div>
     </div>
   );
 }
