@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 type SocialButtonsProps = {
@@ -19,7 +19,7 @@ export default function SocialButtons({ onBusy }: SocialButtonsProps) {
       callbackURL: "/",
     });
     if (error) {
-      toast.error(error.message);
+      toast.error(error.message ?? "কিছু ভুল হয়েছে");
       setBusy(null);
       onBusy(false);
     }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import AuthCard from "@/components/auth-card";
 import AuthField from "@/components/auth-field";
