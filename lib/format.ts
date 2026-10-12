@@ -24,9 +24,13 @@ export function formatPriceNumber(value: number): string {
   return priceFormat.format(value);
 }
 
-export function formatChange(change: Product["change"]): string {
+export function formatChange(
+  change: Product["change"],
+  percentGap = false,
+): string {
   const sign = change.dir === "up" ? "▲ " : change.dir === "down" ? "▼ " : "—";
-  return `${sign}${percentFormat.format(Math.abs(change.pct))}%`;
+  const gap = percentGap ? " " : "";
+  return `${sign}${percentFormat.format(Math.abs(change.pct))}${gap}%`;
 }
 
 export function unitLabel(unit: string): string {

@@ -73,7 +73,7 @@ export default async function ProductPage({
           <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-base-100 text-6xl">
             {product.image}
           </div>
-          <div className="leading-none">
+          <div className="leading-tight">
             <h1 className="text-4xl font-medium">{product.nameBn}</h1>
             <p className="text-base text-base-content/60">
               {unitLabel(product.unit)} · {product.categoryNameBn}
@@ -85,7 +85,7 @@ export default async function ProductPage({
             </p>
           </div>
         </div>
-        <div className="w-full rounded-2xl bg-base-100 px-6 py-4 text-center leading-none lg:w-fit">
+        <div className="w-full rounded-2xl bg-base-100 px-6 py-4 text-center leading-tight lg:w-fit">
           <p className="text-lg">আজকের দাম</p>
           <p className="text-4xl font-bold">
             {formatPriceNumber(product.today)}
