@@ -2,19 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct } from "@/lib/api";
 import {
+  changeColorClass,
   formatChange,
   formatPrice,
   formatPriceNumber,
+  shortUnitLabel,
   unitLabel,
 } from "@/lib/format";
 import { requireSession } from "@/lib/session";
-
-const shortUnits: { [unit: string]: string } = {
-  kg: "কেজি",
-  litre: "লিটার",
-  dozen: "ডজন",
-  piece: "পিস",
-};
 
 export const instant = false;
 
@@ -36,12 +31,7 @@ export default async function ProductPage({
       : product.change.dir === "down"
         ? "কমেছে"
         : "স্থির আছে";
-  const dirColor =
-    product.change.dir === "up"
-      ? "text-error"
-      : product.change.dir === "down"
-        ? "text-primary"
-        : "text-base-content/60";
+  const dirColor = changeColorClass(product.change.dir);
   const minPrice = Math.min(...product.markets.map((market) => market.min));
   const maxPrice = Math.max(...product.markets.map((market) => market.max));
   const avgPrice = Math.round(
@@ -91,7 +81,7 @@ export default async function ProductPage({
             {formatPriceNumber(product.today)}
           </p>
           <p className="text-lg text-base-content/60">
-            টাকা / {shortUnits[product.unit] ?? product.unit}
+            টাকা / {shortUnitLabel(product.unit)}
           </p>
           <p className={`text-lg font-bold ${dirColor}`}>
             {formatChange(product.change)}

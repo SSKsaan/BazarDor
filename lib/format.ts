@@ -37,6 +37,25 @@ export function unitLabel(unit: string): string {
   return units[unit] ?? unit;
 }
 
+const shortUnits: { [unit: string]: string } = {
+  kg: "কেজি",
+  litre: "লিটার",
+  dozen: "ডজন",
+  piece: "পিস",
+};
+
+export function shortUnitLabel(unit: string): string {
+  return shortUnits[unit] ?? unit;
+}
+
+export function changeColorClass(dir: Product["change"]["dir"]): string {
+  return dir === "up"
+    ? "text-error"
+    : dir === "down"
+      ? "text-primary"
+      : "text-base-content/60";
+}
+
 export function formatToday(): string {
   const now = new Date();
   const options = { timeZone: "Asia/Dhaka" } as const;

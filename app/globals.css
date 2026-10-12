@@ -30,3 +30,17 @@
 @theme inline {
   --font-sans: var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
 }
+
+@keyframes ticker-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker-scroll 40s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}

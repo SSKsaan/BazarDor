@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { formatChange, formatPriceNumber, unitLabel } from "@/lib/format";
+import {
+  changeColorClass,
+  formatChange,
+  formatPriceNumber,
+  unitLabel,
+} from "@/lib/format";
 import type { Product } from "@/lib/types";
 
 type ProductCardProps = {
@@ -7,12 +12,7 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const badgeColor =
-    product.change.dir === "up"
-      ? "text-error"
-      : product.change.dir === "down"
-        ? "text-primary"
-        : "text-base-content/60";
+  const badgeColor = changeColorClass(product.change.dir);
 
   return (
     <Link

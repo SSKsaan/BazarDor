@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
+import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CategoryRowShell from "@/components/category-row-shell";
 import Navbar from "@/components/navbar";
+import PriceTicker from "@/components/price-ticker";
 import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({
@@ -20,7 +23,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="bn" className={`${hindSiliguri.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-base-100 font-light text-base-content">
-        <Navbar />
+        <div className="sticky top-0 z-40">
+          <Navbar />
+          <CategoryRowShell />
+        </div>
+        <Suspense
+          fallback={
+            <div className="border-b border-black/10 bg-white">
+              <div className="skeleton mx-4 my-1 h-6" />
+            </div>
+          }
+        >
+          <PriceTicker />
+        </Suspense>
         {children}
         <ToastContainer />
       </body>
