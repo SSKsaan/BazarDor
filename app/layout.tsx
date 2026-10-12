@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CategoryRowShell from "@/components/category-row-shell";
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import PriceTicker from "@/components/price-ticker";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <PriceTicker />
         </Suspense>
         {children}
+        <Footer />
         <ToastContainer />
       </body>
     </html>
