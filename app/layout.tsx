@@ -7,6 +7,7 @@ import CategoryRowShell from "@/components/category-row-shell";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import PriceTicker from "@/components/price-ticker";
+import ToastCloseButton from "@/components/toast-close-button";
 import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({
@@ -42,7 +43,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Suspense>
         {children}
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+          toastClassName="text-sm sm:text-base"
+          closeButton={<ToastCloseButton />}
+        />
       </body>
     </html>
   );

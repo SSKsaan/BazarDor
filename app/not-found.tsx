@@ -1,4 +1,9 @@
 import EmptyState from "@/components/empty-state";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "পাতাটি খুঁজে পাওয়া যায়নি",
+};
 
 export default function NotFound() {
   return (

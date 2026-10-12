@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import TableScroller from "@/components/table-scroller";
 import { getProduct } from "@/lib/api";
 import {
   changeColorClass,
@@ -68,13 +69,17 @@ export default async function ProductPage({
             <p className="text-base text-base-content/60">
               {unitLabel(product.unit)} · {product.categoryNameBn}
             </p>
-            <p className="text-base">
+            <p className="hidden text-base lg:block">
               গতকালের তুলনায় আজ দাম{" "}
               <span className="font-bold">{dirWord}</span> ·{" "}
               {formatPrice(diff)}
             </p>
           </div>
         </div>
+        <p className="overflow-x-auto whitespace-nowrap text-center text-sm lg:hidden">
+          গতকালের তুলনায় আজ দাম{" "}
+          <span className="font-bold">{dirWord}</span> · {formatPrice(diff)}
+        </p>
         <div className="w-full rounded-2xl bg-base-100 px-6 py-4 text-center leading-tight lg:w-fit">
           <p className="text-lg">আজকের দাম</p>
           <p className="text-4xl font-bold">
@@ -128,16 +133,15 @@ export default async function ProductPage({
             </p>
           </div>
         </div>
-        <h2 className="mt-6 text-xl font-medium">বাজারভিত্তিক আজকের দাম</h2>
-        <div className="mt-4 overflow-x-auto rounded-2xl border border-black/20">
-          <table className="w-full">
+        <TableScroller title="বাজারভিত্তিক আজকের দাম">
+          <table className="w-full tabular-nums">
             <thead>
               <tr className="border-b border-black/20 bg-white text-base font-normal text-base-content/60">
-                <th className="px-4 py-3 text-left">বাজার</th>
-                <th className="px-4 py-3 text-left">বিভাগ</th>
-                <th className="px-4 py-3 text-right">সর্বনিম্ন</th>
-                <th className="px-4 py-3 text-right">সর্বাধিক</th>
-                <th className="px-4 py-3 text-right">গড়</th>
+                <th className="px-5 py-3 text-left">বাজার</th>
+                <th className="px-5 py-3 text-left">বিভাগ</th>
+                <th className="px-5 py-3 text-right">সর্বনিম্ন</th>
+                <th className="px-5 py-3 text-right">সর্বাধিক</th>
+                <th className="px-5 py-3 text-right">গড়</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-black/10">
@@ -146,26 +150,26 @@ export default async function ProductPage({
                   key={`${market.market}-${market.division}`}
                   className={index % 2 === 0 ? "bg-white" : "bg-base-100"}
                 >
-                  <td className="px-4 py-3 text-base-content/60">
+                  <td className="px-5 py-3 text-base-content/60">
                     {market.market}
                   </td>
-                  <td className="px-4 py-3 text-base-content/60">
+                  <td className="px-5 py-3 text-base-content/60">
                     {market.division}
                   </td>
-                  <td className="px-4 py-3 text-right text-base-content/60">
+                  <td className="px-5 py-3 text-right text-base-content/60">
                     {formatPrice(market.min)}
                   </td>
-                  <td className="px-4 py-3 text-right text-base-content/60">
+                  <td className="px-5 py-3 text-right text-base-content/60">
                     {formatPrice(market.max)}
                   </td>
-                  <td className="px-4 py-3 text-right font-normal">
+                  <td className="px-5 py-3 text-right font-normal">
                     {formatPrice((market.min + market.max) / 2)}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
+        </TableScroller>
       </section>
     </main>
   );

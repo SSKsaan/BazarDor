@@ -32,14 +32,11 @@ export default function ProductList({ products }: ProductListProps) {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p>মোট {formatPriceNumber(products.length)}টি পণ্য দেখানো হচ্ছে</p>
-        <div className="flex items-center gap-2">
-          <label htmlFor="sort" className="text-base-content/60">
-            সাজান:
-          </label>
+        <p className="min-w-0 text-sm sm:text-base">মোট {formatPriceNumber(products.length)}টি পণ্য দেখানো হচ্ছে</p>
+        <div className="flex shrink-0 items-center gap-2">
           <div className="relative">
             <select
-              id="sort"
+              aria-label="সাজান:"
               value={sort}
               onChange={(e) => {
                 handleChange(e.target.value);
