@@ -21,7 +21,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="bn" className={`${hindSiliguri.variable} h-full antialiased`}>
+    <html
+      lang="bn"
+      className={`${hindSiliguri.variable} h-full scroll-smooth antialiased`}
+    >
       <body className="min-h-full flex flex-col bg-base-100 font-light text-base-content">
         <div className="sticky top-0 z-40">
           <Navbar />

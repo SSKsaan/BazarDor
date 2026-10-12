@@ -1,9 +1,11 @@
 import { Suspense } from "react";
 import AllProducts from "@/components/all-products";
+import Hero from "@/components/hero";
 
 export default function Home() {
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+      <Hero />
       <Suspense
         fallback={
           <div>
