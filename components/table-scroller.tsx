@@ -18,12 +18,12 @@ export default function TableScroller({ title, children }: TableScrollerProps) {
   return (
     <div className="mt-4">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-xl font-medium">{title}</h2>
+        <h2 className="text-lg font-medium sm:text-xl">{title}</h2>
         <div className="flex shrink-0 gap-1 lg:hidden">
           <button
             type="button"
             aria-label="বামে দেখুন"
-            className="rounded-lg p-1 hover:bg-base-200"
+            className="rounded-lg hover:bg-base-200"
             onClick={() => slide(-1)}
           >
             <svg
@@ -42,7 +42,7 @@ export default function TableScroller({ title, children }: TableScrollerProps) {
           <button
             type="button"
             aria-label="ডানে দেখুন"
-            className="rounded-lg p-1 hover:bg-base-200"
+            className="rounded-lg hover:bg-base-200"
             onClick={() => slide(1)}
           >
             <svg

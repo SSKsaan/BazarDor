@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import ProductDetails from "@/components/product-details";
-import { requireSession } from "@/lib/session";
 
 const productFallback = (
   <>
@@ -36,18 +35,15 @@ const productFallback = (
   </>
 );
 
-export default async function ProductPage({
+export default function ProductPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  await requireSession();
-  const { slug } = await params;
-
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 tracking-wide">
       <Suspense fallback={productFallback}>
-        <ProductDetails slug={slug} />
+        <ProductDetails params={params} />
       </Suspense>
     </main>
   );

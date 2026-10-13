@@ -10,8 +10,15 @@ import {
   shortUnitLabel,
   unitLabel,
 } from "@/lib/format";
+import { requireSession } from "@/lib/session";
 
-export default async function ProductDetails({ slug }: { slug: string }) {
+export default async function ProductDetails({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  await requireSession();
+  const { slug } = await params;
   const product = await getProduct(slug);
   if (!product) {
     notFound();
@@ -128,11 +135,11 @@ export default async function ProductDetails({ slug }: { slug: string }) {
           <table className="w-full tabular-nums">
             <thead>
               <tr className="border-b border-black/20 bg-white text-base font-normal text-base-content/60">
-                <th className="px-5 py-3 text-left">বাজার</th>
-                <th className="px-5 py-3 text-left">বিভাগ</th>
-                <th className="px-5 py-3 text-right">সর্বনিম্ন</th>
-                <th className="px-5 py-3 text-right">সর্বাধিক</th>
-                <th className="px-5 py-3 text-right">গড়</th>
+                <th className="px-4 py-3 text-left">বাজার</th>
+                <th className="px-4 py-3 text-left">বিভাগ</th>
+                <th className="px-4 py-3 text-right">সর্বনিম্ন</th>
+                <th className="px-4 py-3 text-right">সর্বাধিক</th>
+                <th className="px-4 py-3 text-right">গড়</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-black/10">
@@ -141,19 +148,19 @@ export default async function ProductDetails({ slug }: { slug: string }) {
                   key={`${market.market}-${market.division}`}
                   className={index % 2 === 0 ? "bg-white" : "bg-base-100"}
                 >
-                  <td className="px-5 py-3 text-base-content/60">
+                  <td className="px-4 py-3 text-base-content/60">
                     {market.market}
                   </td>
-                  <td className="px-5 py-3 text-base-content/60">
+                  <td className="px-4 py-3 text-base-content/60">
                     {market.division}
                   </td>
-                  <td className="px-5 py-3 text-right text-base-content/60">
+                  <td className="px-4 py-3 text-right text-base-content/60">
                     {formatPrice(market.min)}
                   </td>
-                  <td className="px-5 py-3 text-right text-base-content/60">
+                  <td className="px-4 py-3 text-right text-base-content/60">
                     {formatPrice(market.max)}
                   </td>
-                  <td className="px-5 py-3 text-right font-normal">
+                  <td className="px-4 py-3 text-right font-bold">
                     {formatPrice((market.min + market.max) / 2)}
                   </td>
                 </tr>
